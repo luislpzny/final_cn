@@ -1,0 +1,155 @@
+<%- layout('layouts/main') %>
+  <br>
+
+<div class="container">
+  <div class="row">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      Agregar producto
+    </button>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/agregarproducto" method="POST">
+
+              <div class="form-group">
+                <input type="text" name="nombre" placeholder="Nombre del producto" class="form-control">
+              </div><br>
+  
+              <div class="form-group">
+                <input type="text" name="precio" placeholder="Precio del Producto" class="form-control">
+              </div><br>
+  
+              <div class="form-group">
+                <textarea name="descripcion" placeholder="Inserta una descripcion" class="form-control"
+                  cols="50"></textarea>
+              </div>
+              <br>
+  
+              <button type="submit" class="btn btn-dark mb-3" class="fal fa-user-plus">Agregar</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <br>
+
+  <div class="container">
+    <div class="row">
+
+      <% for(var i=0;i<productos.length; i++){%>
+        <div class="col-4">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= productos[i].nombre %>
+              </h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                <%= productos[i].precio %>
+              </h6>
+              <p class="card-text">
+                <%= productos[i].descripcion %>
+              </p>
+
+              <!--EDITAR MODAL-->
+              <!-- Button trigger modal -->               
+              <a href="/edit/<%= productos[i]._id %>" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</a>
+              
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              <%= j=i %>
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Editar producto</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="modal-body">
+                        
+                        <form action="/update/<%= productos[i]._id %>" method="POST">
+            
+                          <div class="form-group">
+                            <input type="text" name="nombre" placeholder="Nombre del producto" class="form-control">
+                          </div><br>
+              
+                          <div class="form-group">
+                            <input type="text" name="precio" placeholder="Precio del Producto" class="form-control">
+                          </div><br>
+              
+                          <div class="form-group">
+                            <textarea name="descripcion" placeholder="Inserta una descripcion" class="form-control"
+                              cols="50"></textarea>
+                          </div>
+                          <br>
+                          
+                          <button type="submit" class="btn btn-dark mb-3" class="fal fa-user-plus"><%= [i] %></button>
+                          
+                        </form>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <a href="/delete/<%= productos[i]._id %>" type="button" class="btn btn-danger">Eliminar</a>
+              
+              
+            </div>
+          </div> <br>
+        </div>
+        <%}%>
+
+
+    </div>
+  </div>
+
+  
+
+  <div class="container">
+    <div class="row">
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <form action="/agregarproducto" method="POST">
+
+            <div class="form-group">
+              <input type="text" name="nombre" placeholder="Nombre del producto" class="form-control">
+            </div><br>
+
+            <div class="form-group">
+              <input type="text" name="precio" placeholder="Precio del Producto" class="form-control">
+            </div><br>
+
+            <div class="form-group">
+              <textarea name="descripcion" placeholder="Inserta una descripcion" class="form-control"
+                cols="50"></textarea>
+            </div>
+            <br>
+
+            <button type="submit" class="btn btn-dark mb-3" class="fal fa-user-plus">Agregar</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
