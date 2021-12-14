@@ -5,7 +5,7 @@
     <!--NAVBAR-->
     <%- layout('layouts/main') %>
     <!--NAVBAR-->
-    <h1>hola mundo Yuriria</h1>
+    <h1>Tablero de discucion de <%= dicisbd.nombre %></h1>
    
 
     <%= user.email%>
@@ -36,19 +36,19 @@
                         <div class="modal-body">
                           <form action="/nuevarespuestaD" method="POST">
                             <div class="form-group">                              
-                                <input  type="text" name="res_usuario" placeholder="Nombre del producto" readonly class="form-control" value="<%= user.email %>">
+                                <input  type="text" name="res_usuario" placeholder="Titulo" readonly class="form-control" value="<%= user.email %>">
                               </div><br>
 
                             <div class="form-group">
-                                <input  type="text" name="res_hilo" placeholder="Nombre del producto" readonly class="form-control" value="<%= dicisbd._id %>">
+                                <input  type="text" name="res_hilo" placeholder="Titulo" readonly class="form-control" value="<%= dicisbd._id %>">
                               </div><br>
 
                               <div class="form-group">
-                                <input  type="text" name="res_post" placeholder="Nombre del producto" readonly class="form-control" value="<%= dicisbd._id %>">
+                                <input  type="text" name="res_post" placeholder="Titulo" readonly class="form-control" value="<%= dicisbd._id %>">
                               </div><br>
               
                             <div class="form-group">
-                              <input type="text" name="res_nombre" placeholder="Nombre del producto" class="form-control">
+                              <input type="text" name="res_nombre" placeholder="Titulo" class="form-control">
                             </div><br>
                 
                             <div class="form-group">
@@ -57,7 +57,7 @@
                             </div>
                             <br>
                 
-                            <button type="submit" class="btn btn-dark mb-3" class="fal fa-user-plus">Agregar</button>
+                            <button type="submit" class="btn btn-dark mb-3" class="fal fa-user-plus"><i class='bx bx-send'></i></button>
                           </form>
                         </div>
                         <div class="modal-footer">
@@ -100,34 +100,6 @@
 </div>
 
 <!--Apartado de respuestas de la parte final-->
-<div class="container">
-    <div class="row">    
-            <div class="card">
-                <h5 class="card-header">Featured</h5>
-                <div class="card-body">
-                    <form action="/updateD/<%= dicisbd._id %>" method="POST">
-                        
-                        <div class="form-group">
-                            <input  type="text" name="precio" placeholder="Nombre del producto" readonly class="form-control" value="<%= user.email %>">
-                        </div><br>
-
-                        <div class="form-group">
-                            <input type="text" name="nombre" placeholder="Nombre del producto" class="form-control">
-                        </div><br>
-
-                        <div class="form-group">
-                            <textarea name="descripcion" placeholder="Inserta una descripcion" class="form-control"
-                                cols="50"></textarea>
-                        </div>
-                        <br>
-
-                        <button type="submit" class="btn btn-dark mb-3" class="fal fa-user-plus">editr</button>
-
-                    </form>
-                </div>
-              </div>
-              
-    </div>
-</div><br>
+<br>
 
 <%- include('partials/_footer') %>

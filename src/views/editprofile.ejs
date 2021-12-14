@@ -1,0 +1,33 @@
+<%- include('partials/_header') %>
+<title>Titulo</title>
+</head>
+<body>
+    <!--NAVBAR-->
+    <%- layout('layouts/main') %>
+    <!--NAVBAR-->
+    <%= user.email%>
+    <form action="/updateprofile/<%= user._id %>" method="POST">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Nombre de usuario @</span>
+            <input type="text" name="user.perfil.username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="<%= user.perfil.username %>" >
+          </div>
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Nombre</span>
+            <input type="text" name="user.perfil.name" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" value="<%= user.perfil.name %>" >
+          </div>
+    
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Carrera</span>
+            <input type="text" name="user.perfil.carrera" class="form-control" placeholder="Carrera" aria-label="Username" aria-describedby="basic-addon1" value="<%= user.perfil.carrera %>" >
+          </div>
+    
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Sobre mi</span>
+            <input type="text" name="user.perfil.sobremi" class="form-control" placeholder="Sobre mi" aria-label="Username" aria-describedby="basic-addon1" value="<%= user.perfil.sobremi %>" >
+          </div>
+          
+            <button type="submit"  class="btn btn-primary">Guardar cambios</button>
+        
+    </form>
+<%- include('partials/_footer') %>

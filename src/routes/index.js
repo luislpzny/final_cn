@@ -8,15 +8,17 @@ const Respuesta = require('../models/respuestas');
 const Dicis = require('../models/dicisbd');
 const RespuestaD = require('../models/respuestas');
 
-
+const Users = require('../models/user');
 
 /*
  *RENDERIZAR PAGINAS 
  */
 
 //llamar al index o pagina de inicio sin iniciar secion
-router.get('/', (req, res, next) => {
-  res.render('index');
+router.get('/', async(req, res, next) => {
+  const dicisbd = await Dicis.find();
+  const hilos = await Hilo.find();
+  res.render('index',{hilos,dicisbd});
 });
 
 //Entrar a campus de la UG
@@ -50,7 +52,7 @@ router.get('/signin', (req, res, next) => {
 
 //manda los datos de inicio de sesion para verificar que sean correctos
 router.post('/signin', passport.authenticate('local-signin', {
-  successRedirect: '/profile',
+  successRedirect: '/',
   failureRedirect: '/signin',
   passReqToCallback: true
 }));
@@ -188,6 +190,22 @@ router.post('/nuevarespuestaD',async(req,res)=>{
 
 });
 
+
+/////////////////////////////////////////////////////
+
+
+router.get('/editprofile/:id',async(req,res)=>{
+  const {id} = req.params;
+  const users = await Users.findById(id);
+  res.render('editprofile',{users});
+
+});
+
+router.post('/updateprofile/:id', async(req,res)=>{
+  const {id} = req.params;
+  await Users.update({_id:id},req.body);
+  res.redirect('/profile');
+});
 
 ///Funcion para verificar si se esta autenticado
 function isAuthenticated(req, res, next) {

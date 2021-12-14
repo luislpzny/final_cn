@@ -1,6 +1,9 @@
 <!-- NAVIGATION -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="/images/UGTOBN.png" alt="" width="300">
+    </a>
     <a class="navbar-brand" href="/">Foro UG</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,29 +20,6 @@
         <li class="nav-item">
           <a class="nav-link" href="/dem">DEM Yuriria</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/hilos">Idiomas</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/hilos">Tema Libre</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/hilos">ENMS</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Categorias
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Gitarras</a></li>
-            <li><a class="dropdown-item" href="#">Baterias</a></li>
-            <li><a class="dropdown-item" href="#">Electronicos</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Blog</a>
-        </li>
       </ul>
     </div>
     <ul>
@@ -55,11 +35,11 @@
     </form>
     -->
     <%if (user) { %>
-      <a type="button" href="/logout" class="btn btn-primary" style="margin: 0px 3px 0px 3px;">Salir</a>
-      <a type="button" href="/profile" class="btn btn-primary" style="margin: 0px 3px 0px 3px;">Perfil</a>
+      <a type="button" href="/logout" class="btn btn-primary" style="margin: 0px 3px 0px 3px;"><i class='bx bx-log-out'></i></a>
+      <a type="button" href="/profile" class="btn btn-primary" style="margin: 0px 3px 0px 3px;"><i class='bx bxs-user'></i></a>
       <% } else { %>
-        <a type="button" href="/signin" class="btn btn-secondary" style="margin: 0px 3px 0px 3px;">Ingresar</a>
-        <a type="button" href="/signup" class="btn btn-primary" style="margin: 0px 3px 0px 3px;">Registrate</a>
+        <a type="button" href="/signin" class="btn btn-secondary" style="margin: 0px 3px 0px 3px;"><i class='bx bx-log-in'></i></a>
+        <a type="button" href="/signup" class="btn btn-primary" style="margin: 0px 3px 0px 3px;"><i class='bx bx-edit-alt'></i></a>
         <% } %>
   </div>
 </nav>

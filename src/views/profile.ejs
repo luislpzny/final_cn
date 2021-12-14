@@ -1,11 +1,100 @@
 <%- include('partials/_header') %>
 
-<title>Titulo</title>
+<title>Perfil</title>
 </head>
 <body>
     <!--NAVBAR-->
     <%- layout('layouts/main') %>
     <!--NAVBAR-->
     <%= user.email%>
-</body>
-</html>
+
+<div class="container">
+    <div class="row">
+        
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Nombre de usuario @</span>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username" readonly aria-describedby="basic-addon1" value="<%= user.perfil.username %>" >
+              </div>
+        
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Correo</span>
+                <input type="text" class="form-control" placeholder="Correo" aria-label="Username" readonly aria-describedby="basic-addon1" value="<%= user.email %>" >
+              </div>
+        
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Nombre</span>
+                <input type="text" class="form-control" placeholder="Correo" aria-label="Username" readonly aria-describedby="basic-addon1" value="<%= user.perfil.username %>" >
+              </div>
+        
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Carrera</span>
+                <input type="text" class="form-control" placeholder="Correo" aria-label="Username" readonly aria-describedby="basic-addon1" value="<%= user.perfil.carrera %>" >
+              </div>
+        
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Sobre mi</span>
+                <input type="text" class="form-control" placeholder="Correo" aria-label="Username" readonly aria-describedby="basic-addon1" value="<%= user.perfil.sobremi %>" >
+              </div>
+        
+        
+    </div>
+</div>
+
+<div class="container">
+    <div class="rows">
+        <!--MODAL-->
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Editar <i class='bx bxs-edit' ></i>
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editar perfil <i class='bx bxs-edit' ></i></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form >
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Nombre de usuario @</span>
+                                <input type="text" name="user.perfil.username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" value="<%= user.perfil.username %>" >
+                              </div>
+
+                              <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Nombre</span>
+                                <input type="text" name="user.perfil.name" class="form-control" placeholder="Nombre" aria-label="Username" aria-describedby="basic-addon1" value="<%= user.perfil.name %>" >
+                              </div>
+                        
+                              <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Carrera</span>
+                                <input type="text" name="user.perfil.carrera" class="form-control" placeholder="Carrera" aria-label="Username" aria-describedby="basic-addon1" value="<%= user.perfil.carrera %>" >
+                              </div>
+                        
+                              <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Sobre mi</span>
+                                <input type="text" name="user.perfil.sobremi" class="form-control" placeholder="Sobre mi" aria-label="Username" aria-describedby="basic-addon1" value="<%= user.perfil.sobremi %>" >
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Guardar cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a type="button" href="/editprofile/<%= user._id %>" class="btn btn-secondary">Editar</a>
+
+    </div>
+</div>
+
+      
+      
+<%- include('partials/_footer')%>      
+
