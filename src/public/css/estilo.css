@@ -1,0 +1,47 @@
+:root{
+    --primary:#4ad445;
+    --dark: #21252f;
+    --body:#888;
+    --box-shadow: 0 8px 22px rgba(0,0,0,0.1);
+    
+}
+
+body{
+    background-image: url(../images/portada.webp);
+    background-position: center;
+    background-size:contain;
+    position: relative;
+    
+    z-index: 2;
+}
+body::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    
+    left: 0;
+    background-color: rgba(164, 172, 138, 0.8);
+    z-index: -1;
+}
+
+
+nav{
+    border-bottom-style:solid;
+    border-bottom-color: yellow;
+    border-bottom-width: 5px
+}
+
+.footer{
+    color: white;
+    background-color: rgb(24, 27, 25);
+}
+footer .bx{
+    font-size: 30px;
+    width: 50px;
+    color: #ffffff;
+}
+footer li {
+    color: #ffffff;
+}

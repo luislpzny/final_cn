@@ -1,0 +1,30 @@
+
+
+.btn{
+    margin: 10px;
+}
+
+
+
+#formulario{
+    
+    color: white;
+    border-style:solid;
+    border-color: white;
+    font-size: x-large;
+    border-radius: 1.8%;
+}
+
+.footer{
+    color: white;
+    background-color: rgb(24, 27, 25);
+}
+footer .bx{
+    font-size: 30px;
+    width: 50px;
+    color: white;
+    
+}
+footer li {
+    color: #ffffff;
+}

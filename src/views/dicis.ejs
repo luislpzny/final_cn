@@ -1,0 +1,152 @@
+<%- include('partials/_header') %>
+<title>Titulo</title>
+</head>
+<body>
+    <!--NAVBAR-->
+    <%- layout('layouts/main') %>
+    <!--NAVBAR-->
+      <br>
+    
+    
+    <!--Boton pra moadal de agregar producto-->
+    
+    <div class="container">
+      <div class="row">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          Crear nueva discusión
+        </button>
+      
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+          aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="/nuevodicis" method="POST">
+    
+                  <div class="form-group">
+                    <input type="text" name="nombre" placeholder="Nombre del producto" class="form-control">
+                  </div><br>
+      
+                  <div class="form-group">
+                    
+                    <input  type="text" name="precio" placeholder="Nombre del producto" readonly class="form-control" value="<%= user.email %>">
+                  </div><br>
+      
+                  <div class="form-group">
+                    <textarea name="descripcion" placeholder="Inserta una descripcion" class="form-control"
+                      cols="50"></textarea>
+                  </div>
+                  <br>
+      
+                  <button type="submit" class="btn btn-dark mb-3" class="fal fa-user-plus">Agregar</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <br>
+    
+      
+      <!--Targetas de reespuestas-->
+      <div class="container">
+        <div class="row">
+          <% var j = dicisbd.length; %>
+          <% for(var i=0; i<dicisbd.length; i++){%>
+            <div class="col-4">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <p><%= dicisbd[i]._id %></p>
+                  <h5 class="card-title">
+                    <%= dicisbd[i].nombre %>
+                  </h5>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    Por: <%= dicisbd[i].precio %>
+                  </h6>
+                  <p class="card-text">
+                    <%= dicisbd[i].descripcion %>
+                  </p>
+                  
+                  <a href="/editDicis/<%= dicisbd[i]._id %>" class="btn btn-warning btn-sm">Ver discusión</a>
+                  <!--EDITAR MODAL-->
+                  <!-- Button trigger modal -->               
+                  <a href="/editDicis/<%= dicisbd[i]._id %>" type="button" class="btn btn-primary" data-bs-toggle="modal" >Editar</a>
+                  
+                  
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  <%= j=i %>
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Editar producto</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="modal-body">
+                            
+                            <form action="/update/<%= dicisbd[i]._id %>" method="POST">
+                
+                              <div class="form-group">
+                                <input type="text" name="nombre" placeholder="Nombre del producto" class="form-control">
+                              </div><br>
+                  
+                              <div class="form-group">
+                                <input type="text" name="precio" placeholder="Precio del Producto" class="form-control">
+                              </div><br>
+                  
+                              <div class="form-group">
+                                <textarea name="descripcion" placeholder="Inserta una descripcion" class="form-control"
+                                  cols="50"></textarea>
+                              </div>
+                              <br>
+                              
+                              <button type="submit" class="btn btn-dark mb-3" class="fal fa-user-plus"><%= [i] %></button>
+                              
+                            </form>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+    
+    
+                  <a href="/delete/<%= dicisbd[i]._id %>" type="button" class="btn btn-danger">Eliminar</a>
+    
+                  <!--Boton pra moadal de agregar producto-->
+    
+          
+                  
+                </div>
+              </div> <br>
+            </div>
+            <%}%>
+    
+    
+        </div>
+      
+    
+    
+      
+      <!--Targetas de reespuestas-->
+     
+    
+    
+      
+    
+<%- include('partials/_footer') %>

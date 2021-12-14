@@ -1,12 +1,12 @@
 
-router.get('/products', async(req, res, next) => {
-  const productos = await Productos.find();
-  res.render('products',{productos});
+router.get('/hilos', async(req, res, next) => {
+  const hilos = await hilos.find();
+  res.render('hilos',{hilos});
 });
 
 
 
-router.post('/products', new LocalStrategy({
+router.post('/hilos', new LocalStrategy({
   titleField: 'nombre',
   priceField: 'precio',
   descriptionField: 'descripcion',
@@ -15,47 +15,47 @@ router.post('/products', new LocalStrategy({
 
   //const producto = await Producto.findOne({'email': email});
  
-    const newProductos = new Producto();
-    newProductos.nombre = nombre;
-    newProductos.precio = precio;
-    newProductos.descripcion = descripcion;
+    const newhilos = new Producto();
+    newhilos.nombre = nombre;
+    newhilos.precio = precio;
+    newhilos.descripcion = descripcion;
     
     await newUser.save();
-    done(null, newProductos);
+    done(null, newhilos);
    
 
  }));
 
 
 
-router.post('/products',async(req,res)=>{
+router.post('/hilos',async(req,res)=>{
 
 }, async (req, nombre, precio, descripcion, done) => {
 
   //const producto = await Producto.findOne({'email': email});
  
-    const newProductos = new Producto();
-    newProductos.nombre = nombre;
-    newProductos.precio = precio;
-    newProductos.descripcion = descripcion;
+    const newhilos = new Producto();
+    newhilos.nombre = nombre;
+    newhilos.precio = precio;
+    newhilos.descripcion = descripcion;
     
-    await newProductos.save();
-    done(null, newProductos);
+    await newhilos.save();
+    done(null, newhilos);
   
 });
 
 router.post('/agregarproducto',async(req,res)=>{
-    const productos = new Producto(req.body);
+    const hilos = new Producto(req.body);
     
     /*
-    newProductos.nombre = nombre;
-    newProductos.precio = precio;
-    newProductos.descripcion = descripcion; 
+    newhilos.nombre = nombre;
+    newhilos.precio = precio;
+    newhilos.descripcion = descripcion; 
     */
   
-    await productos.save();
-    //done(null, newProductos);
-    res.redirect('/products');
+    await hilos.save();
+    //done(null, newhilos);
+    res.redirect('/hilos');
   
     /*
     const newUser = new User();

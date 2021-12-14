@@ -1,11 +1,20 @@
-<%- layout('layouts/main') %>
+<%- include('partials/_header') %>
+<title>Titulo</title>
+</head>
+<body>
+    <!--NAVBAR-->
+    <%- layout('layouts/main') %>
+    <!--NAVBAR-->
   <br>
+  
 
+<!--Boton pra moadal de agregar producto-->
+<a href=""><i class='bx bxl-instagram'></i></a>
 <div class="container">
   <div class="row">
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-      Agregar producto
+      Crear nueva discusión
     </button>
   
     <!-- Modal -->
@@ -18,14 +27,15 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form action="/agregarproducto" method="POST">
+            <form action="/nuevohilo" method="POST">
 
               <div class="form-group">
                 <input type="text" name="nombre" placeholder="Nombre del producto" class="form-control">
               </div><br>
   
               <div class="form-group">
-                <input type="text" name="precio" placeholder="Precio del Producto" class="form-control">
+                
+                <input  type="text" name="precio" placeholder="Nombre del producto" readonly class="form-control" value="<%= user.email %>">
               </div><br>
   
               <div class="form-group">
@@ -48,26 +58,30 @@
   </div>
   <br>
 
+
+  <!--Targetas de reespuestas-->
   <div class="container">
     <div class="row">
-
-      <% for(var i=0;i<productos.length; i++){%>
+      <% var j = hilos.length; %>
+      <% for(var i=0; i<hilos.length; i++){%>
         <div class="col-4">
           <div class="card" style="width: 18rem;">
             <div class="card-body">
+              <p><%= hilos[i]._id %></p>
               <h5 class="card-title">
-                <%= productos[i].nombre %>
+                <%= hilos[i].nombre %>
               </h5>
               <h6 class="card-subtitle mb-2 text-muted">
-                <%= productos[i].precio %>
+                Por: <%= hilos[i].precio %>
               </h6>
               <p class="card-text">
-                <%= productos[i].descripcion %>
+                <%= hilos[i].descripcion %>
               </p>
-
+              <a href="/editDem/<%= hilos[i]._id %>" class="btn btn-warning btn-sm">Ver discusión</a>
               <!--EDITAR MODAL-->
               <!-- Button trigger modal -->               
-              <a href="/edit/<%= productos[i]._id %>" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Editar</a>
+              <a href="/editDem/<%= hilos[i]._id %>" type="button" class="btn btn-primary" data-bs-toggle="modal" >Editar</a>
+              
               
               <!-- Modal -->
               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -82,7 +96,7 @@
                     <div class="modal-body">
                       <div class="modal-body">
                         
-                        <form action="/update/<%= productos[i]._id %>" method="POST">
+                        <form action="/update/<%= hilos[i]._id %>" method="POST">
             
                           <div class="form-group">
                             <input type="text" name="nombre" placeholder="Nombre del producto" class="form-control">
@@ -111,8 +125,11 @@
               </div>
 
 
-              <a href="/delete/<%= productos[i]._id %>" type="button" class="btn btn-danger">Eliminar</a>
-              
+              <a href="/delete/<%= hilos[i]._id %>" type="button" class="btn btn-danger">Eliminar</a>
+
+              <!--Boton pra moadal de agregar producto-->
+
+      
               
             </div>
           </div> <br>
@@ -121,35 +138,12 @@
 
 
     </div>
-  </div>
-
   
 
-  <div class="container">
-    <div class="row">
 
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <form action="/agregarproducto" method="POST">
+  
+  <!--Targetas de reespuestas-->
+ 
 
-            <div class="form-group">
-              <input type="text" name="nombre" placeholder="Nombre del producto" class="form-control">
-            </div><br>
 
-            <div class="form-group">
-              <input type="text" name="precio" placeholder="Precio del Producto" class="form-control">
-            </div><br>
-
-            <div class="form-group">
-              <textarea name="descripcion" placeholder="Inserta una descripcion" class="form-control"
-                cols="50"></textarea>
-            </div>
-            <br>
-
-            <button type="submit" class="btn btn-dark mb-3" class="fal fa-user-plus">Agregar</button>
-          </form>
-        </div>
-
-      </div>
-    </div>
-  </div>
+  <%- include('partials/_footer') %>

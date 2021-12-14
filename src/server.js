@@ -12,8 +12,10 @@ const flash = require('connect-flash');
 
 //Inicializaciones
 const app = express();
+app.use(express.static(__dirname + '/public'));
 require('./database');
 require('./passport/local-auth');
+
 
 // Settings
 app.set('views', path.join(__dirname, 'views'))

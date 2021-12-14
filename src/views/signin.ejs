@@ -1,30 +1,41 @@
-<%- layout('layouts/main') %>
+<%- include('partials/_header') %>
+<link href="/css/style_signin.css" rel="stylesheet" type="text/css">
+    <title>Ingresar</title>
+        <!--NAVBAR-->
+        <%- layout('layouts/main') %>
+            <!--NAVBAR--> 
+          <br><br>
+          <div class="container"> <!-- class="container-fliud"-->            
+            <div class="row">
+                <div class="col-3"></div>
+                <div id="formulario" class="col-6 vh-0 d-flex justify-content-center">                  
+                    <form form action="/signin" method="POST">
+                        <div class="form-group mx-auto ">
+                            <h1>Iniciar sesión</h1>
+                          <label for="exampleInputEmail1">Correo Electronico</label>
+                          <input type="email" name="email" placeholder="Email" class="form-control mb-3">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Contraseña</label>
+                          <input type="password" name="password" placeholder="Password" class="form-control mb-3">
+                                             
+                        </div>
+                        <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <label class="form-check-label" for="exampleCheck1">Recordarme</label>
+                        </div>
+                        <button type="submit" class="btn btn-dark mb-3">Acceder </button>
+                        <br>
+                      </form>
+                </div>
+                
+            </div>
+        </div>
+            
 
-<div class="row">
-  <div class="col-md-4 offset-md-4">
-    <div class="card mt-4 text-center">
-      <div class="card-header">
-        <h3>Login</h3>
-      </div>
-      <div class="card-body">
-        <form action="/signin" method="POST">
-          <div class="form-group">
-            <input type="email" name="email" placeholder="Email" class="form-control mb-3">
-          </div>
-          <div class="form-group">
-            <input type="password" name="password" placeholder="Password" class="form-control mb-3">
-          </div>
-          <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="submit" class="btn btn-dark mb-3">Acceder </button>
-          </div>
-          
-          
-          
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+
+<%- include('partials/_footer') %>
+
 
 
 

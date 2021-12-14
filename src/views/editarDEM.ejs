@@ -1,0 +1,133 @@
+<%- include('partials/_header') %>
+<title>Hilo de</title>
+</head>
+<body>
+    <!--NAVBAR-->
+    <%- layout('layouts/main') %>
+    <!--NAVBAR-->
+    <h1>hola mundo Yuriria</h1>
+   
+
+    <%= user.email%>
+
+<div class="container">
+    <div class="row">
+        <div class="card">
+            <h5 class="card-header"><%= hilos.nombre %></h5>
+            <p style="text-align: right;">ID del Hilo: <%= hilos._id %></p>
+            <div class="card-body">
+              <h5 class="card-title"><%= hilos.precio %></h5>
+              <p class="card-text"><%= hilos.descripcion %></p>
+
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" style="width: 150px;">
+                    Responder
+                  </button>
+                
+                  <!-- Modal -->
+                  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                          <form action="/nuevarespuesta" method="POST">
+                            <div class="form-group">                              
+                                <input  type="text" name="res_usuario" placeholder="Nombre del producto" readonly class="form-control" value="<%= user.email %>">
+                              </div><br>
+
+                            <div class="form-group">
+                                <input  type="text" name="res_hilo" placeholder="Nombre del producto" readonly class="form-control" value="<%= hilos._id %>">
+                              </div><br>
+
+                              <div class="form-group">
+                                <input  type="text" name="res_post" placeholder="Nombre del producto" readonly class="form-control" value="<%= hilos._id %>">
+                              </div><br>
+              
+                            <div class="form-group">
+                              <input type="text" name="res_nombre" placeholder="Nombre del producto" class="form-control">
+                            </div><br>
+                
+                            <div class="form-group">
+                              <textarea name="res_contenido" placeholder="Inserta una descripcion" class="form-control"
+                                cols="50"></textarea>
+                            </div>
+                            <br>
+                
+                            <button type="submit" class="btn btn-dark mb-3" class="fal fa-user-plus">Agregar</button>
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  
+                </div>
+
+            </div>
+          </div>
+    </div>
+</div>
+<br>
+
+<div class="container">
+    <% for(var i=0;i<respuestas.length; i++){%>
+    <div class="row">
+        <% if(hilos._id == respuestas[i].res_post){ %>
+            <div class="card">
+                <h5 class="card-header"><%= respuestas[i].res_nombre %></h5>
+                <div class="card-body">
+                    <h6 style="text-align: right;" >En respuesta al post: <%= respuestas[i].res_post %> </h6>
+                  <h5 class="card-title">Por: <%= respuestas[i].res_usuario %></h5>
+                  <p class="card-text"><%= respuestas[i].res_contenido %></p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+          <% } else{ %>  
+            <!--No pasa-->
+         <% } %>
+
+        
+        
+          
+    </div><br> 
+    <%}%>
+</div>
+
+<!--Apartado de respuestas de la parte final-->
+<div class="container">
+    <div class="row">    
+            <div class="card">
+                <h5 class="card-header">Featured</h5>
+                <div class="card-body">
+                    <form action="/update/<%= hilos._id %>" method="POST">
+                        
+                        <div class="form-group">
+                            <input  type="text" name="precio" placeholder="Nombre del producto" readonly class="form-control" value="<%= user.email %>">
+                        </div><br>
+
+                        <div class="form-group">
+                            <input type="text" name="nombre" placeholder="Nombre del producto" class="form-control">
+                        </div><br>
+
+                        <div class="form-group">
+                            <textarea name="descripcion" placeholder="Inserta una descripcion" class="form-control"
+                                cols="50"></textarea>
+                        </div>
+                        <br>
+
+                        <button type="submit" class="btn btn-dark mb-3" class="fal fa-user-plus">editr</button>
+
+                    </form>
+                </div>
+              </div>
+              
+    </div>
+</div><br>
+
+<%- include('partials/_footer') %>

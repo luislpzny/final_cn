@@ -1,0 +1,45 @@
+<%- include('partials/_header') %>
+<title>Titulo</title>
+</head>
+<body>
+    <!--NAVBAR-->
+    <%- layout('layouts/main') %>
+    <!--NAVBAR-->
+    <h1>Ultimos hilos</h1>
+
+    <!--MENU-->
+    <button style="text-align: center" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+        aria-controls="offcanvasWithBothOptions">Ver los campus disponibles</button>
+    
+    
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+        aria-labelledby="offcanvasWithBothOptionsLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdroped with scrolling</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <a type="button" href="/guanjuato" class="btn btn-primary">Guanajuato</a><br><br>
+            <a type="button" href="/Leon" class="btn btn-primary">Leon</a><br><br>
+            <a type="button" href="/irapuato" class="btn btn-primary">Irapuato-Salamanca</a><br><br>
+            <a type="button" href="/celaya" class="btn btn-primary">Celaya Salvatierra</a><br><br>
+        </div>
+    </div>
+    
+    <br><br>
+
+    <div>
+        <div class="container">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Ver</a>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    
+<%- include('partials/_footer') %>

@@ -2,11 +2,33 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
-const Producto = require('../models/productos');
+const Hilo = require('../models/hilos');
+const Respuesta = require('../models/respuestas');
 
-// llamar al index o pagina de inicio
+const Dicis = require('../models/dicisbd');
+const RespuestaD = require('../models/respuestas');
+
+
+
+/*
+ *RENDERIZAR PAGINAS 
+ */
+
+//llamar al index o pagina de inicio sin iniciar secion
 router.get('/', (req, res, next) => {
   res.render('index');
+});
+
+//Entrar a campus de la UG
+router.get('/campus', (req, res, next) => {
+  res.render('campus');
+  
+});
+
+//prueba de paginas
+router.get('/mainprofile', (req, res, next) => {
+  res.render('mainprofile');
+  
 });
 
 //Llamar a la pagina de crear cuenta
@@ -33,71 +55,141 @@ router.post('/signin', passport.authenticate('local-signin', {
   passReqToCallback: true
 }));
 
+/*
+ *PETICIONES 
+ */
+
 //Sale de la sesion
 router.get('/logout', (req, res, next) => {
   req.logout();
   res.redirect('/');
 });
 
-//Agrega elementos a la coleccion productos
-router.post('/agregarproducto',async(req,res)=>{
-  const productos = new Producto(req.body);
-  await productos.save();
-  res.redirect('/products');
-
-});
-
-/*
-//todos las rutas debajo estaran dentro de la seguridad de las sessions
-router.use((req, res, next)=>{
-  isAuthenticated(req, res, next);
-  next();
-});
-*/
-
 //Accede a profile solo si estainiciado la secion
 router.get('/profile',isAuthenticated, (req, res, next) => {
   res.render('profile');
 });
 
-/*
-router.get('/products',async(req,res)=>{
-  const task = await Producto.find();
-  //console.log(task);
-  //res.send('mensaje de prueba desd nodeJS');
-  res.render('products',{task});
-});
-*/
-
-//Accede a productos solo si esta iniciado la secion
-router.get('/products',isAuthenticated, async(req, res, next) => {
-  const productos = await Producto.find();
-  res.render('products',{productos});
+/* DEM */
+//Agrega elementos a la coleccion hilos
+//Accede a hilos solo si esta iniciado la secion
+router.get('/dem',isAuthenticated, async(req, res, next) => {
+  const hilos = await Hilo.find();
+  res.render('dem',{hilos});
 });
 
 
-router.get('/edit/:id',isAuthenticated,async(req,res, next)=>{
+router.post('/nuevohilo',async(req,res)=>{
+  const hilos = new Hilo(req.body);
+  await hilos.save();
+  res.redirect('/dem');
+
+});
+
+router.post('/demrespuesta/:id',isAuthenticated ,async(req,res, next)=>{
   const {id} = req.params;
-  const productos = await Producto.findById(id);
-  res.render('products',{productos});
+  await Hilo.insert({_id:id},req.body);
+  res.redirect('/dem');
+ 
 });
 
+//Editar algun producto
+router.get('/editDem/:id',isAuthenticated,async(req,res, next)=>{
+  const {id} = req.params;
+  const respuestas = await Respuesta.find();
+  const hilos = await Hilo.findById(id);
+  res.render('editarDEM',{hilos,respuestas});
+});
+
+
+
+
+//Acctualizar algun producto
 router.post('/update/:id',isAuthenticated ,async(req,res, next)=>{
   const {id} = req.params;
-  await Producto.update({_id:id},req.body);
-  res.redirect('/products');
+  await Hilo.update({_id:id},req.body);
+  res.redirect('/dem');
 });
-
+//Eliminar hilos
 router.get('/delete/:id',isAuthenticated,async(req,res)=>{
   const {id}=req.params;
-  await Producto.remove({_id:id});
-  res.redirect('/products');
+  await Hilo.remove({_id:id});
+  res.redirect('/dem');
   //res.send('peticion de borraer recibida por GET');
 });
 
 
 
+/* DICIS */
+//Agrega elementos a la coleccion hilos
+//Accede a hilos solo si esta iniciado la secion
+router.get('/dicis',isAuthenticated, async(req, res, next) => {
+  const dicisbd = await Dicis.find();
+  res.render('dicis',{dicisbd});
+});
 
+router.post('/nuevodicis',async(req,res)=>{
+  const dicisbd = new Dicis(req.body);
+  await dicisbd.save();
+  res.redirect('/dicis');
+
+});
+
+router.post('/dicisrespuesta/:id',isAuthenticated ,async(req,res, next)=>{
+  const {id} = req.params;
+  await Dicis.insert({_id:id},req.body);
+  res.redirect('/dicis');
+ 
+});
+
+//Editar algun producto
+router.get('/editDicis/:id',isAuthenticated,async(req,res, next)=>{
+  const {id} = req.params;
+  const respuestasD = await RespuestaD.find();
+  const dicisbd = await Dicis.findById(id);
+  res.render('editDicis',{dicisbd,respuestasD});
+});
+
+
+
+
+//Acctualizar algun producto
+router.post('/updateD/:id',isAuthenticated ,async(req,res, next)=>{
+  const {id} = req.params;
+  await Dcis.update({_id:id},req.body);
+  res.redirect('/dicis');
+});
+//Eliminar hilos
+router.get('/delete/:id',isAuthenticated,async(req,res)=>{
+  const {id}=req.params;
+  await Hilo.remove({_id:id});
+  res.redirect('/dicis');
+  //res.send('peticion de borraer recibida por GET');
+});
+
+router.post('/update/:id',isAuthenticated ,async(req,res, next)=>{
+  const {id} = req.params;
+  await Hilo.update({_id:id},req.body);
+  res.redirect('/dicis');
+});
+
+//////////////Funciones de respuestas/////////////////
+router.post('/nuevarespuesta',async(req,res)=>{
+  const respuestas = new Respuesta(req.body);
+  await respuestas.save();
+  res.redirect('/dem');
+
+});
+
+router.post('/nuevarespuestaD',async(req,res)=>{
+  const respuestasD = new RespuestaD(req.body);
+  await respuestasD.save();
+  res.redirect('/dicis');
+
+});
+
+
+///Funcion para verificar si se esta autenticado
 function isAuthenticated(req, res, next) {
   if(req.isAuthenticated()) {
     return next();
